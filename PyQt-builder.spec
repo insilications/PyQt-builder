@@ -5,15 +5,12 @@
 %define keepstatic 1
 Name     : PyQt-builder
 Version  : 1.10.3
-Release  : 28
+Release  : 29
 URL      : https://files.pythonhosted.org/packages/27/c2/9fcaf0f4eb96dc06dc38ca66e4f1bb890b9852f62b93069b81646f7bff65/PyQt-builder-1.10.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/27/c2/9fcaf0f4eb96dc06dc38ca66e4f1bb890b9852f62b93069b81646f7bff65/PyQt-builder-1.10.3.tar.gz
 Summary  : The PEP 517 compliant PyQt build system
 Group    : Development/Tools
 License  : GPL-2.0 SIP
-Requires: PyQt-builder-bin = %{version}-%{release}
-Requires: PyQt-builder-python = %{version}-%{release}
-Requires: PyQt-builder-python3 = %{version}-%{release}
 Requires: packaging
 Requires: sip
 BuildRequires : buildreq-distutils3
@@ -47,36 +44,6 @@ BuildRequires : sip
         
         PyQt-builder is copyright (c) Riverbank Computing Limited.  Its homepage is
 
-%package bin
-Summary: bin components for the PyQt-builder package.
-Group: Binaries
-
-%description bin
-bin components for the PyQt-builder package.
-
-
-%package python
-Summary: python components for the PyQt-builder package.
-Group: Default
-Requires: PyQt-builder-python3 = %{version}-%{release}
-Provides: pyqt-builder-python
-
-%description python
-python components for the PyQt-builder package.
-
-
-%package python3
-Summary: python3 components for the PyQt-builder package.
-Group: Default
-Requires: python3-core
-Provides: pypi(pyqt_builder)
-Requires: pypi(packaging)
-Requires: pypi(sip)
-
-%description python3
-python3 components for the PyQt-builder package.
-
-
 %prep
 %setup -q -n PyQt-builder-1.10.3
 cd %{_builddir}/PyQt-builder-1.10.3
@@ -87,7 +54,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1625440263
+export SOURCE_DATE_EPOCH=1625442430
 export GCC_IGNORE_WERROR=1
 ## altflags1 content
 export CFLAGS="-g -O3 --param=lto-max-streaming-parallelism=16 -march=native -mtune=native -fgraphite-identity -Wall -Wl,--as-needed -Wl,--build-id=sha1 -Wl,--enable-new-dtags -Wl,--hash-style=gnu -Wl,-O2 -Wl,-z,now -Wl,-z,relro -falign-functions=32 -flimit-function-alignment -fasynchronous-unwind-tables -fdevirtualize-at-ltrans -floop-nest-optimize -floop-block -fno-math-errno -fno-semantic-interposition -fno-stack-protector -fno-trapping-math -ftree-loop-distribute-patterns -ftree-loop-vectorize -ftree-vectorize -fuse-ld=bfd -fuse-linker-plugin -malign-data=cacheline -feliminate-unused-debug-types -fipa-pta -flto=16 -fno-plt -mtls-dialect=gnu2 -Wl,-sort-common -Wno-error -Wp,-D_REENTRANT -pipe -ffat-lto-objects -fPIC -fomit-frame-pointer -pthread -static-libstdc++ -static-libgcc -Wl,--build-id=sha1"
@@ -177,15 +144,3 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
-
-%files bin
-%defattr(-,root,root,-)
-/usr/bin/pyqt-bundle
-/usr/bin/pyqt-qt-wheel
-
-%files python
-%defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*
